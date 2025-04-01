@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     const privateKey = process.env.CLOUDFRONT_PRIVATE_KEY.replace(/\\n/g, '\n');
 
     const signedUrl = getSignedUrl({
-      url: `https://df3f5t1ky9d5t.cloudfront.net/${file}`,
+      url: `https://assets.uotinitiative.org/${file}`,
       keyPairId: "K3DIU5P2B5DBYE",
       dateLessThan: new Date(Date.now() + 5 * 60 * 1000),
       privateKey,
