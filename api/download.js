@@ -23,6 +23,16 @@ export default async function handler(req, res) {
       privateKey,
     });
 
+    await fetch("https://script.google.com/macros/s/AKfycbzJ-8XuqfJMFl-khzVyEKe5GHJFgqvS3u6sLyE0R0-dz9S9XavwQBV2zsrSBSXerRgg/exec", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    file,
+    ip: req.headers["x-forwarded-for"] || req.socket.remoteAddress,
+    userAgent: req.headers["user-agent"]
+  })
+});
+    
     return res.status(200).json({ url: signedUrl });
   } catch (err) {
     console.error("Failed to generate signed URL", err);
