@@ -14,8 +14,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const privateKeyPath = join(process.cwd(), "api", "private_key.pem");
-    const privateKey = readFileSync(privateKeyPath, "utf8");
+    const privateKey = process.env.CLOUDFRONT_PRIVATE_KEY.replace(/\\n/g, '\n');
 
     const signedUrl = getSignedUrl({
       url: `https://df3f5t1ky9d5t.cloudfront.net/${file}`,
